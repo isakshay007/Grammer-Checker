@@ -20,7 +20,7 @@ st.image(image, width=150)
 # App title and introduction
 st.title("Grammar Analyzer🔎 ")
 st.markdown("### Built using Lyzr SDK🚀")
-st.markdown("Step into the world of flawless writing with our Grammar Checker app. Effortlessly elevate your document to perfection, showcasing precision and clarity with every sentence")
+st.markdown("Step into the world of flawless writing with our Grammar Analyzer app. Effortlessly elevate your document to perfection, showcasing precision and clarity with every sentence")
 
 def remove_existing_files(directory):
     for filename in os.listdir(directory):
