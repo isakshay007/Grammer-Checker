@@ -18,9 +18,9 @@ image = Image.open("./logo/lyzr-logo.png")
 st.image(image, width=150)
 
 # App title and introduction
-st.title("Medical Assistant 🏥")
+st.title("Grammmer Checker🔎 ")
 st.markdown("### Built using Lyzr SDK🚀")
-st.markdown("Introducing the Lyzr Medical Assistant! Seamlessly analyze your medical records with cutting-edge AI technology. Simply upload your documents, and unlock detailed insights instantly!")
+st.markdown("Step into the world of flawless writing with our Grammar Checker app. Effortlessly elevate your document to perfection, showcasing precision and clarity with every sentence")
 
 def remove_existing_files(directory):
     for filename in os.listdir(directory):
@@ -44,13 +44,13 @@ os.makedirs(data_directory, exist_ok=True)
 remove_existing_files(data_directory)
 
 # Streamlit app header
-# st.title("PDF File Uploader")
+# st.title("Word File Uploader")
 
 # File upload widget
-uploaded_file = st.file_uploader("Choose PDF file", type=["pdf"])
+uploaded_file = st.file_uploader("Choose Word file", type=["docx"])
 
 if uploaded_file is not None:
-    # Save the uploaded PDF file to the data directory
+    # Save the uploaded Word file to the data directory
     file_path = os.path.join(data_directory, uploaded_file.name)
     with open(file_path, "wb") as file:
         file.write(uploaded_file.getvalue())
@@ -60,7 +60,7 @@ if uploaded_file is not None:
 
 
 def get_files_in_directory(directory="data"):
-    # This function help us to get the file path along with filename.
+    # This function helps us get the file path along with the filename.
     files_list = []
 
     # Ensure the directory exists
@@ -81,7 +81,7 @@ def rag_implementation():
     path = get_files_in_directory()
     path = path[0]
 
-    rag = QABot.pdf_qa(
+    rag = QABot.docx_qa(
         input_files=[str(path)],
         llm_params={"model": "gpt-3.5-turbo"},
         # vector_store_params=vector_store_params
@@ -92,11 +92,12 @@ def rag_implementation():
 
 def resume_response():
     rag = rag_implementation()
-    prompt = """  Give the description of the given record in these bullet points,
-                    - Medication List: List current prescriptions, note any allergies, and assess compliance.
-                    - Vital Signs: Review recent measurements such as blood pressure, heart rate, and temperature.
-                    - Diagnostic Tests: Examine results of recent tests like blood work, imaging, or ECGs for any abnormalities.
-                    - Progress Notes: Evaluate physician's observations, treatment plans, and any referrals made."""
+    prompt = """  Follow the intructions as given below ,
+                    - Run spell check to identify misspelled words. Correct each flagged word, ensuring accurate spelling and context.
+                    - Carefully review for grammar and sentence structure errors. Correct subject-verb agreement, tense misuse, and punctuation errors.
+                    - Proofread line by line, focusing on syntax, coherence, and clarity. Rectify awkward phrasing, unclear language, and inconsistencies in writing style. Rewrite or rephrase sentences for enhanced readability.
+                    - Keep the corrected document and print it. Start printing the corrected version from the next line after this statement: "Correct version:".
+                    - Errors : Show the errors in the document and it has been changed."""
 
     
     response = rag.query(prompt)
@@ -110,9 +111,7 @@ if uploaded_file is not None:
 # Footer or any additional information
 with st.expander("ℹ️ - About this App"):
     st.markdown(
-        """
-     
-The Lyzr Medical Assistant, powered by Lyzr QABot, streamlines the analysis of medical records by providing users with detailed insights in a user-friendly interface.For any inquiries or issues, please contact Lyzr.
+        """Experience the seamless integration of Lyzr's QABot as you refine your documents with ease.For any inquiries or issues, please contact Lyzr.
 
     """
     )
