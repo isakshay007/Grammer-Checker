@@ -23,6 +23,7 @@ cycler==0.12.1
 dataclasses-json==0.5.14
 Deprecated==1.2.14
 distro==1.9.0
+docx2txt==0.8
 exceptiongroup==1.2.0
 filelock==3.13.1
 fonttools==4.50.0
