@@ -18,7 +18,7 @@ image = Image.open("./logo/lyzr-logo.png")
 st.image(image, width=150)
 
 # App title and introduction
-st.title("Grammmer Checker🔎 ")
+st.title("Grammmar Analyzer🔎 ")
 st.markdown("### Built using Lyzr SDK🚀")
 st.markdown("Step into the world of flawless writing with our Grammar Checker app. Effortlessly elevate your document to perfection, showcasing precision and clarity with every sentence")
 
